@@ -13,4 +13,4 @@ def hello_world():
 @app.route("/template/")
 @app.route("/template/<name>") # catches sub-route, sets vars
 def template(name=None):
-    return render_template('base.html', name=name)
+    return render_template('index.html', name=name)

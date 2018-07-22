@@ -1,7 +1,26 @@
 body {
   padding-top: 5rem;
 }
+
 .starter-template {
   padding: 3rem 1.5rem;
   text-align: center;
+}
+
+div .cell {
+  background-color: #ddd;
+  border: 1px solid #333;
+  height: 115px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+div .cell-mid {
+  border-left: 0px;
+  border-right: 0px;
+}
+
+div .cell div {
+  width: 100%;
 }
