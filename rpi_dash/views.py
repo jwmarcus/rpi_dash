@@ -5,12 +5,13 @@
 
 from flask import render_template
 from rpi_dash import app
+# TODO: this feels dirty, not sure why
+from rpi_dash.data_handler import Data_Handler
+
+handler = Data_Handler()
 
 @app.route('/')
-def hello_world():
-    return "Hello, World! I'm alive!"
-
-@app.route("/template/")
-@app.route("/template/<name>") # catches sub-route, sets vars
-def template(name=None):
-    return render_template('index.html', name=name)
+def index():
+    payload = handler.get_data()
+    print(payload)
+    return render_template('index.html', payload=payload)

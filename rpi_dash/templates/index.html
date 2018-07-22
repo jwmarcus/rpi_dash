@@ -5,15 +5,64 @@
     <h1>Bootstrap starter template</h1>
     <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
   </div> -->
-  <div class="row">
+  <div class="row mt-3">
     <div class="col-4 cell">
-      <div id="cell1"></div>
+      <div>
+        <b>Summary:</b><br/>
+        {{ payload['currently']['summary'] }}
+      </div>
     </div>
     <div class="col-4 cell cell-mid">
-      <div id="cell2"></div>
+      <div>
+        <b>Temperature:</b><br/>
+        {{ payload['currently']['temperature'] | round | int }}&deg;
+      </div>
     </div>
     <div class="col-4 cell">
-      <div id="cell3"></div>
+      <div>
+        <b>Humidity:</b><br/>
+        {{ payload['currently']['humidity'] * 100 | round | int }}%
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4 cell cell-vert-mid">
+      <div>
+        <b>Pressure:</b><br/>
+        {{ payload['currently']['pressure'] | round | int }}mb
+      </div>
+    </div>
+    <div class="col-4 cell cell-mid cell-vert-mid">
+      <div>
+        <b>Wind Speed:</b><br/>
+        {{ '%0.1f' | format(payload['currently']['windSpeed'])}}mph
+      </div>
+    </div>
+    <div class="col-4 cell cell-vert-mid">
+      <div>
+        <b>Wind Bearing:</b><br/>
+        {{ payload['currently']['windBearing'] }}&deg;
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4 cell">
+      <div>
+        <b>Chance of Rain:</b><br/>
+        {{ payload['currently']['precipProbability'] * 100 | round | int}}%
+      </div>
+    </div>
+    <div class="col-4 cell cell-mid">
+      <div>
+        <b>Rainfall Rate:</b><br/>
+        {{ payload['currently']['precipIntensity']}} in/hr
+      </div>
+    </div>
+    <div class="col-4 cell">
+      <div>
+        <b>Cloud Cover:</b><br/>
+        {{ payload['currently']['cloudCover'] * 100 | round | int }}%
+      </div>
     </div>
   </div>
 {% endblock %}

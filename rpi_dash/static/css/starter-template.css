@@ -21,6 +21,11 @@ div .cell-mid {
   border-right: 0px;
 }
 
+div .cell-vert-mid {
+  border-top: 0px;
+  border-bottom: 0px;
+}
+
 div .cell div {
   width: 100%;
 }
