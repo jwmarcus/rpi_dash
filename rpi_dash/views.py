@@ -12,5 +12,6 @@ handler = Data_Handler()
 
 @app.route('/')
 def index():
+    # payload = handler.load_local_data('rpi_dash/static/data/forecast.json')
     payload = handler.get_data()
     return render_template('index.html', payload=payload)

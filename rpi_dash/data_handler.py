@@ -1,30 +1,31 @@
-import json
-import os
+import json, os
 
-print(os.getcwd())
+import requests
 
 class Data_Handler():
 
-    PATH = 'rpi_dash/static/data/forecast.json'
-    weather_data = {}
+    DATA_PATHS = {}
+    API_PATHS = {}
+
+    weather_data = None
 
     def __init__(self):
-        # we only have one set of data right now
-        self.weather_data = self._load_local_data(self.PATH)
+        # set API and file paths:
+        self.DATA_PATHS['weather'] = 'rpi_dash/static/data/forecast.json'
+        self.API_PATHS['weather'] = 'https://api.darksky.net/forecast/' + os.environ['WEATHER_API_KEY'] + '/42.37,-71.0828'
 
-    def refresh_data(self):
-        # TODO: Implement
-        # Refresh data in this class
-        pass
+        r = requests.get(
+            self.API_PATHS['weather']
+        )
+
+        # Set initial weather data
+        self.weather_data = r.json()
 
     def get_data(self):
-        # TODO: Implement, add type in here too.
-        # Is loaded data recent? If not, get new data
-        # Return the latest data for the page
         return self.weather_data
 
-    def _load_local_data(self, path):
-        payload = {}
-        with open(path) as f:
-            payload = json.load(f)
-        return payload
+    # def load_local_data(self, path):
+    #     payload = {}
+    #     with open(path) as f:
+    #         payload = json.load(f)
+    #     return payload
