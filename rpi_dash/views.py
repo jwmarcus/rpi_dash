@@ -13,5 +13,4 @@ handler = Data_Handler()
 @app.route('/')
 def index():
     payload = handler.get_data()
-    print(payload)
     return render_template('index.html', payload=payload)
