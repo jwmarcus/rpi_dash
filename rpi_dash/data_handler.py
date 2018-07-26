@@ -17,7 +17,7 @@ class Data_Handler():
         self.API_PATHS['weather'] = 'https://api.darksky.net/forecast/' + os.environ['WEATHER_API_KEY'] + '/42.37,-71.0828'
 
     def _refresh_external_weather_data(self):
-        # print("INFO {}: Firing off weather data request".format(datetime.datetime.now()))
+        print("INFO {}: Firing off weather data request".format(datetime.datetime.now()))
 
         r = requests.get(
             self.API_PATHS['weather']
@@ -27,11 +27,8 @@ class Data_Handler():
         w_json = r.json()
         w_json['last_refresh_time'] = int(time.time())
 
-        # Check if this file is existance before writing to it
-        if os.path.isfile(self.DATA_PATHS['weather']):
-            # write to hard drive to pick up later
-            with open(self.DATA_PATHS['weather'], 'w') as f:
-                json.dump(w_json, f)
+        with open(self.DATA_PATHS['weather'], 'w') as f:
+            json.dump(w_json, f)
 
         self.weather_data = w_json
         return w_json
@@ -52,7 +49,7 @@ class Data_Handler():
             w_json = self._refresh_external_weather_data()
 
         # old data - this can dial down to 6 seconds and not cost at this point
-        if (int(time.time()) - w_json['last_refresh_time']) > 60:
+        if (int(time.time()) - w_json['last_refresh_time']) > 120:
             w_json = self._refresh_external_weather_data()
 
         return w_json

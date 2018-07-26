@@ -8,20 +8,20 @@
   <div class="row mt-3">
     <div class="col-4 cell">
       <div>
-        <b>Summary:</b><br/>
-        {{ payload['currently']['summary'] }}
+        <b>Current Conditions:</b><br/>
+        {{ payload['minutely']['summary'] }}
       </div>
     </div>
     <div class="col-4 cell cell-mid">
       <div>
         <b>Temperature:</b><br/>
-        {{ payload['currently']['temperature'] | round | int }}&deg;
+        {{ (payload['currently']['temperature'] | round) | int }}&deg;
       </div>
     </div>
     <div class="col-4 cell">
       <div>
         <b>Humidity:</b><br/>
-        {{ payload['currently']['humidity'] * 100 | round | int }}%
+        {{ (payload['currently']['humidity'] * 100 | round) | int }}%
       </div>
     </div>
   </div>
@@ -29,13 +29,13 @@
     <div class="col-4 cell cell-vert-mid">
       <div>
         <b>Pressure:</b><br/>
-        {{ payload['currently']['pressure'] | round | int }}mb
+        {{ (payload['currently']['pressure'] | round) | int }} mb
       </div>
     </div>
     <div class="col-4 cell cell-mid cell-vert-mid">
       <div>
         <b>Wind Speed:</b><br/>
-        {{ '%0.1f' | format(payload['currently']['windSpeed'])}}mph
+        {{ '%0.1f' | format(payload['currently']['windSpeed'])}} mph
       </div>
     </div>
     <div class="col-4 cell cell-vert-mid">
@@ -48,20 +48,20 @@
   <div class="row">
     <div class="col-4 cell">
       <div>
-        <b>Chance of Rain:</b><br/>
-        {{ payload['currently']['precipProbability'] * 100 | round | int}}%
+        <b>Forecast:</b><br/>
+        {{ payload['daily']['data'][0]['summary'] }}
       </div>
     </div>
     <div class="col-4 cell cell-mid">
       <div>
-        <b>Rainfall Rate:</b><br/>
-        {{ payload['currently']['precipIntensity']}} in/hr
+        <b>Chance of Rain:</b><br/>
+        {{ (payload['daily']['data'][0]['precipProbability'] * 100 | round) | int}}%
       </div>
     </div>
     <div class="col-4 cell">
       <div>
-        <b>Cloud Cover:</b><br/>
-        {{ payload['currently']['cloudCover'] * 100 | round | int }}%
+        <b>Forecast Humidity:</b><br/>
+        {{ (payload['daily']['data'][0]['humidity'] * 100 | round) | int }}%
       </div>
     </div>
   </div>
