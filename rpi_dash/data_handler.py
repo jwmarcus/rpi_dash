@@ -27,9 +27,11 @@ class Data_Handler():
         w_json = r.json()
         w_json['last_refresh_time'] = int(time.time())
 
-        # write to hard drive to pick up later
-        with open(self.DATA_PATHS['weather'], 'w') as f:
-            json.dump(w_json, f)
+        # Check if this file is existance before writing to it
+        if os.path.isfile(self.DATA_PATHS['weather']):
+            # write to hard drive to pick up later
+            with open(self.DATA_PATHS['weather'], 'w') as f:
+                json.dump(w_json, f)
 
         self.weather_data = w_json
         return w_json
