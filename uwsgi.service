@@ -1,0 +1,9 @@
+[Unit]
+Description=uWSGI instance for rpi_dash
+
+[Service]
+ExecStartPre=/usr/bin/bash -c 'mkdir -p /run/uwsgi; chown pi:nginx /run/uwsgi'
+ExecStart=/usr/bin/bash -c 'cd /home/pi/dev/src/rpi_dash; source env/bin/activate; source /etc/profile.d/setvars.sh; uwsgi --ini uwsgi.ini'
+
+[Install]
+WantedBy=multi-user.target

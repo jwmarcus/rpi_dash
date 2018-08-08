@@ -13,14 +13,14 @@ def index():
     payload = handler.get_data()
     return render_template('index.html', payload=payload)
 
-@app.route('/records/')
-def get_documents():
+@app.route('/records/', methods=['GET'])
+def get_records():
     records = mongo.db.measurements.find({})
     return render_template('records.html', records=records)
 
 @app.route('/records/add/', methods=['POST'])
-def insert_document():
-    new_doc = request.form['number']
-    print(new_doc)
-    return render_template('base.html')
-    # number = request.form['']
+def insert_record():
+    mongo.db.measurements.insert_one({
+        'number': request.form['number']
+    })
+    return get_records()

@@ -12,3 +12,6 @@ mongo = PyMongo(app)
 # if we need it. Here for more:
 # http://flask.pocoo.org/docs/1.0/patterns/packages/
 import rpi_dash.views
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0')
