@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <p>
+    Oh Hai Mark. Here's what's in the DB:
+  </p>
+
+  {% for record in records %}
+  <p>{{ record.number }}</p>
+  {% endfor %}
+
+{% endblock %}
