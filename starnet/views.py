@@ -4,7 +4,7 @@
 # through this business logic layer.
 
 from flask import render_template, request
-from rpi_dash import app, data_handler, mongo
+from starnet import app, data_handler, mongo
 
 handler = data_handler.Data_Handler()
 

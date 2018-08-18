@@ -11,7 +11,7 @@ mongo = PyMongo(app)
 # This is here to make sure everything in the views.py is here
 # if we need it. Here for more:
 # http://flask.pocoo.org/docs/1.0/patterns/packages/
-import rpi_dash.views
+import starnet.views
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')

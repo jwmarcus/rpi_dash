@@ -13,7 +13,7 @@ class Data_Handler():
 
     def __init__(self):
         # set API and file paths:
-        self.DATA_PATHS['weather'] = 'rpi_dash/static/data/forecast.json'
+        self.DATA_PATHS['weather'] = 'starnet/static/data/forecast.json'
         self.API_PATHS['weather'] = 'https://api.darksky.net/forecast/' + os.environ['WEATHER_API_KEY'] + '/42.37,-71.0828'
 
     def _refresh_external_weather_data(self):
