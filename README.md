@@ -1,3 +1,42 @@
+## How to setup a happy, healthy starnet.
+
+Install nginx, uwsgi and python plugin
+
+`sudo apt install nginx uwsgi uwsgi-plugin-python3`
+
+### Configure symlinks
+
+Create a link for your projects in /var/apps
+
+`sudo ln -s /path/to/your/projects /var/apps`
+
+Then create one for your uwsgi vassal (app) config
+
+`sudo ln -s /var/apps/starnet/starnet-uwsgi.ini /etc/uwsgi/vassals/starnet-uwsgi.ini`
+
+Next, create a symlink for your emperor config
+
+`sudo ln -s /var/apps/starnet/starnet-emperor.ini /etc/uwsgi/emperor.ini`
+
+Now let's create a link for the nginx configuration
+
+`sudo ln -s /var/apps/starnet/starnet-nginx.conf /etc/nginx/conf.d/starnet-nginx.conf`
+
+### Make sure certain directories exist
+
+uWSGI needs `/run/uwsgi` or will fail silently
+
+`sudo mkdir -p /run/uwsgi`
+
+### copy in your settings via text file
+
+You will need to have environment variables set in a file
+
+```
+WEATHER_API_KEY=yourapikey
+PYTHONDONTWRITEBYTECODE=1
+```
+
 run.py	This is the file that is invoked to start up a development server. It gets a copy of the app from your package and runs it. This won’t be used in production, but it will see a lot of mileage in development.
 
 requirements.txt	This file lists all of the Python packages that your app depends on. You may have separate files for production and development dependencies.
