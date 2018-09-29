@@ -1,11 +1,23 @@
 from flask import Flask
-from flask_pymongo import PyMongo
+import os
+import sqlite3
 
 app = Flask(__name__)
 
-# MongoDB setup
-app.config["MONGO_URI"] = "mongodb://localhost:27017/iotdata"
-mongo = PyMongo(app)
+if not os.path.isfile("starnet-data.db"):
+    conn = sqlite3.connect("starnet-data.db")
+    c = conn.cursor()
+    c.execute(
+        """CREATE TABLE data (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        device_key text,
+        date_time text,
+        field text,
+        data real
+        )"""
+    )
+    conn.commit()
+    conn.close()
 
 # Circular import, chill out, it's ok.
 # This is here to make sure everything in the views.py is here
