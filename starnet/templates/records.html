@@ -6,7 +6,7 @@
   </p>
 
   {% for record in records %}
-  <p>{{ record.number }}</p>
+  <p>{{ record.id }} - {{ record.device_key }} - {{ record.date_time | datetime_format }}</p>
   {% endfor %}
 
 {% endblock %}
