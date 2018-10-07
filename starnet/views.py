@@ -15,12 +15,14 @@ handler = data_handler.Data_Handler()
 
 @app.route('/')
 def index():
+    query = "SELECT * FROM data ORDER BY date_time DESC LIMIT 1"
+    rs = db.execute(query)
     payload = handler.get_data()
-    return render_template('index.html', payload=payload)
+    return render_template('index.html', payload=payload, rs=rs[0])
 
 @app.route('/records/', methods=['GET'])
 def get_records():
-    query = "SELECT * FROM data"
+    query = "SELECT * FROM data ORDER BY date_time DESC"
     rs = db.execute(query)
     return render_template('records.html', records=rs)
 

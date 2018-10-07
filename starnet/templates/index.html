@@ -28,20 +28,20 @@
   <div class="row">
     <div class="col-4 cell cell-vert-mid">
       <div>
-        <b>Pressure:</b><br/>
-        {{ (payload['currently']['pressure'] | round) | int }} mb
+        <b>Remote Temp:</b><br/>
+        {{ rs.data }}&deg;
       </div>
     </div>
     <div class="col-4 cell cell-mid cell-vert-mid">
       <div>
-        <b>Wind Speed:</b><br/>
-        {{ '%0.1f' | format(payload['currently']['windSpeed'])}} mph
+        <b>Remote Report Time:</b><br/>
+        {{ rs.date_time | datetime_format }}
       </div>
     </div>
     <div class="col-4 cell cell-vert-mid">
       <div>
-        <b>Wind Bearing:</b><br/>
-        {{ payload['currently']['windBearing'] }}&deg;
+        <b>Wind Speed:</b><br/>
+        {{ '%0.1f' | format(payload['currently']['windSpeed'])}} mph
       </div>
     </div>
   </div>

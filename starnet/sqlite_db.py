@@ -39,7 +39,6 @@ class Sqlite_DB():
 
             for row in results:
                 records.append(row) # TODO: Find a better way than this
-                print(row)
 
             conn.commit() # Covers queries and admin operations
 
